@@ -11,3 +11,4 @@ jobs:
         run: |
           # Boletim diario de segurança
           chmod +x ./script.sh 
+          ./script.sh
