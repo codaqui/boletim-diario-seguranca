@@ -21,6 +21,7 @@ jobs:
           echo 'EOF' >> $GITHUB_ENV
 
       - uses: JasonEtco/create-an-issue@v2
+        id: create-issue
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CONTEUDO: ${{ env.JSON_RESPONSE }}
@@ -28,10 +29,10 @@ jobs:
         with:
           filename: .github/boletim.md
 
-      # - name: Create comment
-      #   uses: peter-evans/create-or-update-comment@v2
-      #   with:
-      #     issue-number: ${{ steps.create-issue.outputs.number }}
-      #     reactions: '+1'
-      #     body: |
-      #       ${{ steps.criar-boletim.outputs.CONTEUDO }}
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{ steps.create-issue.outputs.number }}
+          reactions: '+1'
+          body: |
+            ${{ env.JSON_RESPONSE }}
