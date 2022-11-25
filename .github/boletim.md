@@ -1,5 +1,7 @@
 ---
 title: "Boletim Diário: {{ env.DATA }}"
 labels: boletim
+body: "{{ env.CONTEUDO }}"
 ---
-{{ env.CONTEUDO }}
+
+:+1:
