@@ -5,6 +5,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: criar-boletim
-        run: |
+        run: ./script.sh
         # Boletim diario de segurança
          
