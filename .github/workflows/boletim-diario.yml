@@ -4,7 +4,7 @@ permissions:
   contents: read
   issues: write
 jobs:
-  my-job:
+  boletim-diario:
     runs-on: ubuntu-latest
     steps:
     
