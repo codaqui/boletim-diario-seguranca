@@ -11,7 +11,6 @@ DATE=$(date +%d/%m/%Y)
 
 # Create file and header
 echo "# Boletim de Segurança" > boletim_final.txt
-echo "--> Data: $DATE" >> boletim_final.txt
 
 # Get all data to boletim3.txt
 awk '{gsub(/<[^>]*>/,"")}1' boletim2.txt >> boletim_final.txt
@@ -31,6 +30,7 @@ sed -i 's/^\*/:arrow_right: /g' boletim_final.txt
 # On end of file insert
 # Agradecimentos ao Thierre Madureira de Souza
 # Automação desenvolvida pelo /tisautomation/
+echo "" >> boletim_final.txt
 echo "_Agradecimentos ao Thierre Madureira de Souza pela inspiração_" >> boletim_final.txt
 echo "_Automação desenvolvida por /Enderson Menezes/ e /Elias Júnior/_" >> boletim_final.txt
 echo "_Aprenda a programar em Codaqui.dev_" >> boletim_final.txt
