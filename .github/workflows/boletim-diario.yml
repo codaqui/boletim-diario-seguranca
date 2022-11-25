@@ -15,11 +15,13 @@ jobs:
           # Boletim diario de segurança
           chmod +x ./script.sh 
           ./script.sh
-          export DATA=$(date +%Y-%m-%d)
-          export CONTEUDO=$(cat boletim_final.txt)
+          echo "DATA=$(date +%d-%m-%Y)" >> $GITHUB_OUTPUT
+          echo "CONTEUDO=$(cat boletim_final.txt)" >> $GITHUB_OUTPUT
 
       - uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DATA: ${{ steps.criar-boletim.outputs.DATA }}
+          CONTEUDO: ${{ steps.criar-boletim.outputs.CONTEUDO }}
         with:
           filename: .github/boletim.md
