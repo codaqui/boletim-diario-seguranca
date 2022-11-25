@@ -7,9 +7,8 @@ jobs:
   boletim-diario:
     runs-on: ubuntu-latest
     steps:
-    
       - uses: actions/checkout@v2
-      
+
       - name: criar-boletim
         run: |
           # Boletim diario de segurança
