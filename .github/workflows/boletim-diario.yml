@@ -1,3 +1,10 @@
-verificar horario
-se horario for < 24h manter pesquisa 
-se nao buscar nova informação no site retorna no github 
+name: boletim-diario
+on: push
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: criar-boletim
+        run: |
+        # Boletim diario de segurança
+         
