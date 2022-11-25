@@ -4,7 +4,10 @@ jobs:
   my-job:
     runs-on: ubuntu-latest
     steps:
+    
+      - uses: actions/checkout@v2
+      
       - name: criar-boletim
-        run: ./script.sh
-        # Boletim diario de segurança
-         
+        run: |
+          # Boletim diario de segurança
+          ./script.sh 
