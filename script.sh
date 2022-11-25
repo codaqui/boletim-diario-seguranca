@@ -10,23 +10,23 @@ xmllint --html --xpath "/html/body/div[1]/main/section[2]/div/div/div[2]/div/div
 DATE=$(date +%d/%m/%Y)
 
 # Create file and header
-echo "# Boletim de Segurança" > boletim3.txt
-echo "--> Data: $DATE" >> boletim3.txt
+echo "# Boletim de Segurança" > boletim_final.txt
+echo "--> Data: $DATE" >> boletim_final.txt
 
 # Get all data to boletim3.txt
-awk '{gsub(/<[^>]*>/,"")}1' boletim2.txt >> boletim3.txt
+awk '{gsub(/<[^>]*>/,"")}1' boletim2.txt >> boletim_final.txt
 
 # Delete last four lines
-sed -i '$ d' boletim3.txt
-sed -i '$ d' boletim3.txt
-sed -i '$ d' boletim3.txt
-sed -i '$ d' boletim3.txt
+sed -i '$ d' boletim_final.txt
+sed -i '$ d' boletim_final.txt
+sed -i '$ d' boletim_final.txt
+sed -i '$ d' boletim_final.txt
 
 # For any line start with '*' insert blank line before
-sed -i 's/^\*/\n*/g' boletim3.txt
+sed -i 's/^\*/\n*/g' boletim_final.txt
 
-# For any line start with '*' remove it and insert ':point_right: ' before it
-sed -i 's/^\*/:point_right: /g' boletim3.txt
+# For any line start with '*' remove it and insert ':arrow_right: ' before it
+sed -i 's/^\*/:arrow_right: /g' boletim_final.txt
 
 # On end of file insert
 # Agradecimentos ao Thierre Madureira de Souza
