@@ -31,8 +31,6 @@ sed -i 's/^\*/:arrow_right: /g' boletim_final.txt
 # On end of file insert
 # Agradecimentos ao Thierre Madureira de Souza
 # Automação desenvolvida pelo /tisautomation/
-echo "" >> boletim_final.txt
-echo "" >> boletim_final.txt
 echo "_Agradecimentos ao Thierre Madureira de Souza pela inspiração_" >> boletim_final.txt
 echo "_Automação desenvolvida por /Enderson Menezes/ e /Elias Júnior/_" >> boletim_final.txt
 echo "_Aprenda a programar em Codaqui.dev_" >> boletim_final.txt
