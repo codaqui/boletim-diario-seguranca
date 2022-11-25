@@ -33,7 +33,7 @@ sed -i 's/^\*/:arrow_right: /g' boletim_final.txt
 # Automação desenvolvida pelo /tisautomation/
 echo "" >> boletim_final.txt
 echo "" >> boletim_final.txt
-# echo "_Agradecimentos ao Thierre Madureira de Souza pela inspiração_" >> boletim_final.txt
-# echo "_Automação desenvolvida por /Enderson Menezes/ e /Elias Júnior/_" >> boletim_final.txt
-# echo "_Aprenda a programar em Codaqui.dev_" >> boletim_final.txt
-# echo "Fonte: \`https://boletimsec.com.br/boletim-diario-ciberseguranca/\`" >> boletim_final.txt
+echo "_Agradecimentos ao Thierre Madureira de Souza pela inspiração_" >> boletim_final.txt
+echo "_Automação desenvolvida por /Enderson Menezes/ e /Elias Júnior/_" >> boletim_final.txt
+echo "_Aprenda a programar em Codaqui.dev_" >> boletim_final.txt
+echo "Fonte: \`https://boletimsec.com.br/boletim-diario-ciberseguranca/\`" >> boletim_final.txt

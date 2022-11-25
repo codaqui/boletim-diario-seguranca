@@ -4,4 +4,4 @@ labels: boletim
 body: "{{ env.CONTEUDO }}"
 ---
 
-:+1:
+:point_down:
