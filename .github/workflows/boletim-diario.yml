@@ -11,8 +11,10 @@ jobs:
 
       - name: criar-boletim
         run: |
-          # Boletim diario de segurança
 
+          # Boletim diario de segurança
+          apt -y install libxml2-utils
+          
           # Get Text from 'https://boletimsec.com.br/boletim-diario-ciberseguranca/' to boletim.html file
           curl -s https://boletimsec.com.br/boletim-diario-ciberseguranca/ > boletim1.txt
 
