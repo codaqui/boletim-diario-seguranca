@@ -14,13 +14,16 @@ jobs:
           # Boletim diario de segurança
           chmod +x ./script.sh 
           ./script.sh
-          echo "SCRIPT_DATA=$(date)" >> $GITHUB_ENV
-          # echo "SCRIPT_CONTEUDO=$(cat boletim_final.txt)" >> $GITHUB_ENV
+          echo "SCRIPT_DATA=$(date +'%d/%m/%Y')" >> $GITHUB_ENV
+          
+          echo 'SCRIPT_CONTEUDO<<EOF' >> $GITHUB_ENV
+          cat boletim_final.txt >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
 
       - uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # CONTEUDO: ${{ env.SCRIPT_CONTEUDO }}
+          CONTEUDO: ${{ env.SCRIPT_CONTEUDO }}
           DATA: ${{ env.SCRIPT_DATA }}
         with:
           filename: .github/boletim.md
