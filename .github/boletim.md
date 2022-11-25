@@ -1,5 +1,5 @@
 ---
-title: Boletim Diário
+title: Boletim Diário: {{ env.DATA }}
 labels: boletim
 ---
-Teste de Boletim =]
+{{ env.CONTEUDO }}
