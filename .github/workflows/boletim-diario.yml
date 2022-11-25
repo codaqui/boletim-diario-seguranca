@@ -20,6 +20,8 @@ jobs:
           cat boletim_final.txt >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
 
+          echo $GITHUB_ENV
+
       - uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
