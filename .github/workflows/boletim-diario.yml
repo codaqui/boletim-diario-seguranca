@@ -10,4 +10,4 @@ jobs:
       - name: criar-boletim
         run: |
           # Boletim diario de segurança
-          ./script.sh 
+          chmod +x ./script.sh 
