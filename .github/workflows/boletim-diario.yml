@@ -15,7 +15,7 @@ jobs:
           # Boletim diario de segurança
           sudo apt -y install libxml2-utils
           chmod +X ./script.sh
-          ./script.sh
+          bash ./script.sh
 
           echo "SCRIPT_DATA=$(date +'%d/%m/%Y')" >> $GITHUB_ENV
           echo 'SCRIPT_CONTEUDO<<EOF' >> $GITHUB_ENV
