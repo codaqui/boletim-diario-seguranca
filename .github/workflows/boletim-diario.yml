@@ -2,7 +2,8 @@ name: boletim-diario
 on: 
   check_run:
         types: 
-            - if:${{'11:44:00'}} == ${{ env.SCRIPT_HORA }}
+            - if: ${{'11:46:00'}} == ${{ env.SCRIPT_HORA }}
+            
 permissions:
   contents: read
   issues: write
