@@ -1,8 +1,7 @@
 name: boletim-diario
-on:     
-    push:
-        types: 
-            - if:${{'12:08:00'}} == ${{ env.SCRIPT_HORA }}
+on: 
+    schedule:
+        - cron: '0 15 * * *'
 permissions:
   contents: read
   issues: write
@@ -19,7 +18,7 @@ jobs:
           sudo apt -y install libxml2-utils
           chmod +X ./script.sh
           bash ./script.sh
-          echo "SCRIPT_HORA=$(TZ='America/Sao_Paulo' date +"%T")" >> $GITHUB_ENV
+
           echo "SCRIPT_DATA=$(date +'%d/%m/%Y')" >> $GITHUB_ENV
           echo 'SCRIPT_CONTEUDO<<EOF' >> $GITHUB_ENV
           cat boletim_final.txt >> $GITHUB_ENV
@@ -30,7 +29,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DATA: ${{ env.SCRIPT_DATA }}
-          HORA: ${{ env.SCRIPT_HORA }}
         with:
           filename: .github/boletim.md
 
