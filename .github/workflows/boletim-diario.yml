@@ -1,7 +1,7 @@
 name: boletim-diario
 on: 
     schedule:
-        - cron: '0 13 * * *'
+        - cron: '16 20 * * *'
 permissions:
   contents: read
   issues: write
@@ -15,7 +15,8 @@ jobs:
         run: |
 
           # Boletim diario de segurança
-          sudo apt -y install libxml2-utils
+          #sudo apt -y install libxml2-utils
+          sudo dpkg -i ./libxml2-utils_2.9.1+dfsg1-3ubuntu4.13_amd64.deb
           chmod +X ./script.sh
           bash ./script.sh
 
