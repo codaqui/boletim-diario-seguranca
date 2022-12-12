@@ -1,7 +1,7 @@
 name: boletim-diario
 on: 
     schedule:
-        - cron: '40 19 * * *'
+        - cron: '0 13 * * *'
 permissions:
   contents: read
   issues: write
