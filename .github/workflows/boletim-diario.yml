@@ -1,6 +1,7 @@
 name: boletim-diario
-on: push
-    
+on: 
+    schedule:
+        - cron: '0 13 * * *'
 permissions:
   contents: read
   issues: write
@@ -25,7 +26,10 @@ jobs:
           echo 'SCRIPT_CONTEUDO<<EOF' >> $GITHUB_ENV
           cat boletim_final.txt >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
-          gh issue close 32
+          
+          #testando gh
+          #gh issue close
+          gh issue list --state closed
           
 
       - uses: JasonEtco/create-an-issue@v2
