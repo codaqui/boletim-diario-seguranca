@@ -11,6 +11,8 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: criar-boletim
+        env:
+            GH_TOKEN: ${{ github.token }}
         run: |
 
           # Boletim diario de segurança
@@ -31,7 +33,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DATA: ${{ env.SCRIPT_DATA }}
-          GH_TOKEN: ${{ github.token }}
         with:
           filename: .github/boletim.md
 
