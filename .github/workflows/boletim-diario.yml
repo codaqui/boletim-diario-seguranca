@@ -25,7 +25,7 @@ jobs:
           echo 'SCRIPT_CONTEUDO<<EOF' >> $GITHUB_ENV
           cat boletim_final.txt >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
-          gh issue list --state closed
+          gh issue close 32
           
 
       - uses: JasonEtco/create-an-issue@v2
