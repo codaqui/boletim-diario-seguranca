@@ -31,6 +31,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DATA: ${{ env.SCRIPT_DATA }}
+          GH_TOKEN: ${{ github.token }}
         with:
           filename: .github/boletim.md
 
