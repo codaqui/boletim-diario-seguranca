@@ -27,10 +27,10 @@ jobs:
           cat boletim_final.txt >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
           
-          #testando gh
-          #gh issue close
-          gh issue list --state closed
-          
+          var=$( cat numero_final.txt )
+          echo $var
+          gh issue close $var
+   
 
       - uses: JasonEtco/create-an-issue@v2
         id: create-issue
