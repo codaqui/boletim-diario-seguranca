@@ -17,22 +17,27 @@ jobs:
             GH_TOKEN: ${{ github.token }}
         run: |
 
-          # Boletim diario de segurança
+          # Boletim Diario De Segurança
+          
+          #Atualização e a Instalação de Dependência
+          
           sudo apt-get update -y
           sudo apt -y install libxml2-utils
+          
+          #Comandos Para Criar uma Nova Issue
+          
           chmod +X ./script.sh
           bash ./script.sh
-          
-          chmod +X ./number.sh
-          bash ./number.sh
-          
           echo "SCRIPT_DATA=$(date +'%d/%m/%Y')" >> $GITHUB_ENV
           echo 'SCRIPT_CONTEUDO<<EOF' >> $GITHUB_ENV
           cat boletim_final.txt >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
           
+          #Comandos Para Fechar Issue Aberta
+          
+          chmod +X ./number.sh
+          bash ./number.sh
           var=$( cat numero_final.txt )
-          echo $var
           gh issue close $var
    
 
