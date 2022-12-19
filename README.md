@@ -22,8 +22,8 @@ receber isso por e-mail caso queira. Basta seguir este repositório.
 **Deixe habilitado a opção "All active" para receber e-mails.**
 
 ##
-
 - *Gostou do Boletim? Deixe uma :star: Como um feedback para nós!*
+##
 
 ## Autor:
 
