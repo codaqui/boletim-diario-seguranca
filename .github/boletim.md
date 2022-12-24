@@ -1,7 +1,7 @@
 ---
-title: "Boletim Diário: {{ env.DATA }}"
+title: "Boletim Diário: {{ env.SCRIPT_DATA }}"
 labels: boletim
-body: "{{ env.CONTEUDO }}"
+body: "{{ env.SCRIPT_CONTEUDO }}"
 ---
 
 :point_down:
