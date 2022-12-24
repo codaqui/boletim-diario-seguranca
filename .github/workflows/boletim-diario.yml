@@ -1,7 +1,5 @@
 name: boletim-diario
-on: 
-    schedule:
-        - cron: '0 13 * * *'
+on: push
 permissions:
   contents: read
   issues: write
@@ -37,7 +35,7 @@ jobs:
           chmod +X ./number.sh
           bash ./number.sh
           var=$( cat numero_final.txt )
-          gh issue close $var
+          #gh issue close $var
    
 
       - uses: JasonEtco/create-an-issue@v2
