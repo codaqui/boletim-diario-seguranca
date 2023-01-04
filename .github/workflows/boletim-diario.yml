@@ -1,5 +1,7 @@
 name: boletim-diario
-on: push
+on: 
+     schedule:
+      - cron: '0 13 * * *'
 permissions:
   contents: read
   issues: write
@@ -32,10 +34,10 @@ jobs:
           
           # Comandos Para Fechar Issue Aberta
           
-          #chmod +X ./number.sh
-          #bash ./number.sh
-          #var=$( cat numero_final.txt )
-          #gh issue close $var
+          chmod +X ./number.sh
+          bash ./number.sh
+          var=$( cat numero_final.txt )
+          gh issue close $var
    
 
       - uses: JasonEtco/create-an-issue@v2
