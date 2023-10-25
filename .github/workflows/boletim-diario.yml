@@ -37,7 +37,8 @@ jobs:
           echo "Fechando Issue aberta"
           chmod +X ./number.sh
           bash ./number.sh
-          var=$( cat numero_final.txt )
+          var=$(cat numero_final.txt)
+          echo "Numero da Issue: $var"
           gh issue close $var
    
 
