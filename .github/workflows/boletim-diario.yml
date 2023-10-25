@@ -38,9 +38,12 @@ jobs:
           chmod +X ./number.sh
           bash ./number.sh
           var=$(cat numero_final.txt)
-          echo "Numero da Issue: $var"
-          gh issue close $var
-   
+          # If var is "pr" ignore issue close
+          if [ "$var" = "pr" ]; then
+            echo "Issue não será fechada"
+          else 
+            gh issue close $var
+          fi
 
       - uses: JasonEtco/create-an-issue@v2
         id: create-issue
