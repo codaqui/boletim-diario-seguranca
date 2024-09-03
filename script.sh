@@ -4,7 +4,7 @@
 curl -s https://boletimsec.com.br/boletim-diario-ciberseguranca/ > boletim1.txt
 
 # Get element by js path from boletim.html file to boletim.txt file
-xmllint --html --xpath "/html/body/div[1]/main/section[1]/div/div/div/div/div/div/div[2]" boletim1.txt 1> boletim2.txt 2> /dev/null
+xmllint --html --xpath "//div[@class='w-post-elm post_content us_custom_a92b9290 has_text_color']" boletim1.txt > boletim2.txt
 
 # Format date to dd/mm/yyyy
 DATE=$(date +%d/%m/%Y)
