@@ -1,10 +1,21 @@
 #!/bin/bash
 
+# Verify curl and xmllint
+if ! [ -x "$(command -v curl)" ]; then
+  echo 'Error: curl is not installed.' >&2
+  exit 1
+fi
+if ! [ -x "$(command -v xmllint)" ]; then
+  echo 'Error: xmllint is not installed.' >&2
+  exit 1
+fi
+
 # Get Text from 'https://boletimsec.com.br/boletim-diario-ciberseguranca/' to boletim.html file
 curl -s https://boletimsec.com.br/boletim-diario-ciberseguranca/ > boletim1.txt
 
 # Get element by js path from boletim.html file to boletim.txt file
-xmllint --html --xpath "//div[@class='w-post-elm post_content us_custom_a92b9290 has_text_color']" boletim1.txt > boletim2.txt
+XPATH="/html/body/div[1]/main/section[2]/div/div/div/div/div/div/div[2]"
+xmllint --html --xpath ${XPATH} boletim1.txt > boletim2.txt
 
 # Format date to dd/mm/yyyy
 DATE=$(date +%d/%m/%Y)
@@ -14,12 +25,6 @@ echo "# Boletim de Segurança" > boletim_final.txt
 
 # Get all data to boletim3.txt
 awk '{gsub(/<[^>]*>/,"")}1' boletim2.txt >> boletim_final.txt
-
-# Delete last four lines
-sed -i '$ d' boletim_final.txt
-sed -i '$ d' boletim_final.txt
-sed -i '$ d' boletim_final.txt
-sed -i '$ d' boletim_final.txt
 
 # For any line start with '*' insert blank line before
 sed -i 's/^\*/\n*/g' boletim_final.txt
