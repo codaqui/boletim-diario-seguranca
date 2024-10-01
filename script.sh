@@ -15,8 +15,15 @@ curl -s https://boletimsec.com.br/boletim-diario-ciberseguranca/ > boletim1.txt
 
 # Get element by js path from boletim.html file to boletim.txt file
 XPATH="//div[@class='w-post-elm post_content us_custom_a92b9290 has_text_color']"
-xmllint --html --xpath ${XPATH} boletim1.txt > boletim2.txt
-
+if ! xmllint --html --xpath "${XPATH}" boletim1.txt > boletim2.txt; then
+  echo 'Error: xmllint failed to extract data.' >&2
+  exit 1
+fi
+# Check if the extraction was successful
+if [ ! -s boletim2.txt ]; then
+  echo 'Error: No data extracted to boletim2.txt.' >&2
+  exit 1
+fi
 # Format date to dd/mm/yyyy
 DATE=$(date +%d/%m/%Y)
 
