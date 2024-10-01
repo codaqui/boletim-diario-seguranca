@@ -10,10 +10,10 @@ if ! [ -x "$(command -v xmllint)" ]; then
   exit 1
 fi
 
-# Get Text from 'https://boletimsec.com.br/boletim-diario-ciberseguranca/' to boletim.html file
+# Get Text from 'https://boletimsec.com.br/boletim-diario-ciberseguranca/' to boletim1.txt file
 curl -s https://boletimsec.com.br/boletim-diario-ciberseguranca/ > boletim1.txt
 
-# Get element by js path from boletim.html file to boletim.txt file
+# Get element by path from boletim1.txt file to boletim2.txt file
 XPATH="//div[@class='w-post-elm post_content us_custom_a92b9290 has_text_color']"
 if ! xmllint --html --xpath "${XPATH}" boletim1.txt > boletim2.txt; then
   echo 'Error: xmllint failed to extract data.' >&2
@@ -30,7 +30,7 @@ DATE=$(date +%d/%m/%Y)
 # Create file and header
 echo "# Boletim de Segurança" > boletim_final.txt
 
-# Get all data to boletim3.txt
+# Get all data to boletim_final.txt
 awk '{gsub(/<[^>]*>/,"")}1' boletim2.txt >> boletim_final.txt
 
 # For any line start with '*' insert blank line before
