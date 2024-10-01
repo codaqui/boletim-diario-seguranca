@@ -1,8 +1,5 @@
 name: boletim-diario
-on: 
-    schedule:
-      - cron: '55 12 * * *'
-    workflow_dispatch:
+on: push
 permissions:
   contents: read
   issues: write
