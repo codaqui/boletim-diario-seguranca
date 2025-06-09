@@ -1,31 +1,29 @@
 # Boletim Diário de Segurança
 
+---
+
 Fonte dos Dados: [BoletimSec](https://boletimsec.com.br/boletim-diario-ciberseguranca/)
 
+---
+
 ## Resumo
-```
-O nosso repositório irá criar uma Issue diariamente com o relatório de segurança, e você pode 
-receber isso por e-mail caso queira. Basta seguir este repositório.
-```
-## 
-### Basta Apenas Seguir os Passos Abaixo:point_down:  
-##
 
-**Primeiro procure por esse botão.**
+O nosso repositório irá criar uma _Issue_ diariamente com o relatório de segurança disponibilizado pela BoletimSec, e você pode receber isso por e-mail seguindo o repositório no GitHub.
 
-![image](https://user-images.githubusercontent.com/63540372/208494126-02cf9a26-1747-4c77-ab51-f0aae9426972.png)
+### Como Seguir o Repositório
 
-**Clique nele, Depois marque a opção mostrada abaixo!**
+![GIF de como seguir o repositório](assets/resume.gif)
 
-![image](https://user-images.githubusercontent.com/11020807/204060725-7b855c7e-2619-471f-81f4-b071be50d52b.png)
+---
 
-**Deixe habilitado a opção "All active" para receber e-mails.**
-
-##
+## Como Contribuir?
+- Se você encontrou um erro ou uma notícia que não está correta, abra uma _Issue_ no repositório.
+- Se você deseja adicionar uma notícia, abra uma _Pull Request_ com a correção.
 - *Gostou do Boletim? Deixe uma :star: Como um feedback para nós!*
-##
 
-## Autor:
+---
+
+## Autores:
 
 - [Enderson Menezes](https://github.com/endersonmenezes)
 - [Elias](https://github.com/ArtumosGOC)
