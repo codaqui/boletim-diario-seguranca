@@ -11,7 +11,7 @@ if ! [ -x "$(command -v xmllint)" ]; then
 fi
 
 # Get Text from 'https://boletimsec.com.br/boletim-diario-ciberseguranca/' to boletim1.txt file
-curl -s https://boletimsec.com.br/boletim-diario-ciberseguranca/ > boletim1.txt
+curl -L https://boletimsec.com.br/boletim-diario-ciberseguranca/ > boletim1.txt
 
 # Get element by path from boletim1.txt file to boletim2.txt file
 XPATH="//div[@class='w-post-elm post_content us_custom_a92b9290 has_text_color']"
