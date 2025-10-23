@@ -1,5 +1,8 @@
 name: boletim-diario
-on: push
+on: 
+    schedule:
+      - cron: '55 12 * * *'
+    workflow_dispatch:
 permissions:
   contents: read
   issues: write
@@ -57,4 +60,5 @@ jobs:
           reactions: '+1'
           body: |
             ${{ env.SCRIPT_CONTEUDO }}
+
 
