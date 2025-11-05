@@ -2,13 +2,19 @@ name: boletim-diario
 on: 
     schedule:
       - cron: '55 12 * * *'
+    pull_request:
+        types: [opened, synchronize, reopened]
+        
     workflow_dispatch:
 permissions:
   contents: read
   issues: write
 jobs:
+
   boletim-diario:
-    runs-on: ubuntu-latest
+    runs-on: 
+        group: codaqui-runners
+        labels: [self-hosted, linux]
     steps:
       - uses: actions/checkout@v3
 
@@ -60,5 +66,6 @@ jobs:
           reactions: '+1'
           body: |
             ${{ env.SCRIPT_CONTEUDO }}
+
 
 
