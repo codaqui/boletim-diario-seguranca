@@ -17,17 +17,61 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: verificar-e-instalar-ferramentas
+        run: |
+          echo "Verificando arquitetura do sistema"
+          uname -m
+          
+          echo "Verificando e instalando ferramentas necessárias"
+          
+          # Atualizar lista de pacotes
+          sudo apt-get update -y
+          
+          # Verificar e instalar curl
+          if ! command -v curl &> /dev/null; then
+            echo "curl não encontrado. Instalando..."
+            sudo apt-get install -y curl
+          else
+            echo "curl já está instalado"
+          fi
+          
+          # Verificar e instalar xmllint (libxml2-utils)
+          if ! command -v xmllint &> /dev/null; then
+            echo "xmllint não encontrado. Instalando libxml2-utils..."
+            sudo apt-get install -y libxml2-utils
+          else
+            echo "xmllint já está instalado"
+          fi
+          
+          # Verificar e instalar jq
+          if ! command -v jq &> /dev/null; then
+            echo "jq não encontrado. Instalando..."
+            sudo apt-get install -y jq
+          else
+            echo "jq já está instalado"
+          fi
+          
+          # Verificar e instalar GitHub CLI
+          if ! command -v gh &> /dev/null; then
+            echo "GitHub CLI não encontrado. Instalando..."
+            # Instalar GitHub CLI usando o método oficial que funciona em ARM e x86_64
+            curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+            sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
+            echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+            sudo apt-get update
+            sudo apt-get install -y gh
+          else
+            echo "GitHub CLI já está instalado"
+          fi
+          
+          echo "Todas as ferramentas necessárias estão instaladas"
+
       - name: criar-boletim
         env:
             GH_TOKEN: ${{ github.token }}
         run: |
           echo "Iniciando Boletim"
           # Boletim Diario De Segurança
-          
-          # Atualização e a Instalação de Dependência
-          echo "Atualizando Dependências"
-          sudo apt-get update -y
-          sudo apt -y install libxml2-utils
           
           # Comandos Para Criar uma Nova Issue
           echo "Executando script's"
