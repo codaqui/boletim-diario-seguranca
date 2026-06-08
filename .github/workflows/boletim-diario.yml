@@ -1,92 +1,68 @@
 name: boletim-diario
+
 on:
-    push
+  push:
+    branches:
+      - main
+
 permissions:
   contents: read
   issues: write
-jobs:
 
+jobs:
   boletim-diario:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
 
       - name: verificar-e-instalar-ferramentas
         run: |
-          echo "Verificando arquitetura do sistema"
-          uname -m
-          
-          echo "Verificando e instalando ferramentas necessárias"
-          
-          # Verificar e instalar curl (necessário para downloads subsequentes)
           if ! command -v curl &> /dev/null; then
-            echo "curl não encontrado. Instalando..."
-            sudo apt-get update -y
-            sudo apt-get install -y curl
-          else
-            echo "curl já está instalado"
+            sudo apt-get update -y && sudo apt-get install -y curl
           fi
-          
-          # Verificar e instalar xmllint (libxml2-utils)
-          if ! command -v xmllint &> /dev/null; then
-            echo "xmllint não encontrado. Instalando libxml2-utils..."
-            sudo apt-get update -y
-            sudo apt-get install -y libxml2-utils
-          else
-            echo "xmllint já está instalado"
+
+          if ! command -v python3 &> /dev/null; then
+            sudo apt-get update -y && sudo apt-get install -y python3 python3-pip
           fi
-          
-          # Verificar e instalar jq
+          pip3 install --quiet beautifulsoup4 lxml
+
           if ! command -v jq &> /dev/null; then
-            echo "jq não encontrado. Instalando..."
-            sudo apt-get update -y
-            sudo apt-get install -y jq
-          else
-            echo "jq já está instalado"
+            sudo apt-get update -y && sudo apt-get install -y jq
           fi
-          
-          # Verificar e instalar GitHub CLI
+
           if ! command -v gh &> /dev/null; then
-            echo "GitHub CLI não encontrado. Instalando..."
-            # Método oficial de instalação do GitHub CLI (funciona em ARM e x86_64)
-            # Fonte: https://github.com/cli/cli/blob/trunk/docs/install_linux.md
-            curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+            curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+              | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
             sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
-            echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
-            sudo apt-get update -y
-            sudo apt-get install -y gh
-          else
-            echo "GitHub CLI já está instalado"
+            echo "deb [arch=$(dpkg --print-architecture) \
+              signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] \
+              https://cli.github.com/packages stable main" \
+              | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+            sudo apt-get update -y && sudo apt-get install -y gh
           fi
-          
-          echo "Todas as ferramentas necessárias estão instaladas"
 
       - name: criar-boletim
         env:
-            GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
         run: |
-          echo "Iniciando Boletim"
-          # Boletim Diario De Segurança
-          
-          # Comandos Para Criar uma Nova Issue
-          echo "Executando script's"
-          chmod +X ./script.sh
+          chmod +x ./script.sh
           bash ./script.sh
-          echo "SCRIPT_DATA=$(date +'%d/%m/%Y')" >> $GITHUB_ENV
-          echo 'SCRIPT_CONTEUDO<<EOF' >> $GITHUB_ENV
-          cat boletim_final.txt >> $GITHUB_ENV
-          echo 'EOF' >> $GITHUB_ENV
-          
-          # Comandos Para Fechar Issue Aberta
-          echo "Fechando Issue aberta"
-          chmod +X ./number.sh
+
+          echo "SCRIPT_DATA=$(date +'%d/%m/%Y')" >> "$GITHUB_ENV"
+
+          echo 'SCRIPT_CONTEUDO<<EOF' >> "$GITHUB_ENV"
+          cat boletim_final.txt >> "$GITHUB_ENV"
+          echo 'EOF' >> "$GITHUB_ENV"
+
+          chmod +x ./number.sh
           bash ./number.sh
+
           var=$(cat numero_final.txt)
-          # If var is "pr" ignore issue close
           if [ "$var" = "pr" ]; then
-            echo "Issue não será fechada"
-          else 
-            gh issue close $var
+            echo "Nenhuma issue aberta para fechar."
+          else
+            gh issue close "$var" --reason "completed" || true
           fi
 
       - uses: JasonEtco/create-an-issue@v2
@@ -97,14 +73,10 @@ jobs:
         with:
           filename: .github/boletim.md
 
-      - name: Create comment
+      - name: adicionar-comentario
         uses: peter-evans/create-or-update-comment@v2
         with:
           issue-number: ${{ steps.create-issue.outputs.number }}
           reactions: '+1'
           body: |
             ${{ env.SCRIPT_CONTEUDO }}
-
-
-
-
