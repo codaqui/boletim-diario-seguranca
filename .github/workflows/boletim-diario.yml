@@ -1,8 +1,5 @@
 name: boletim-diario
-on: 
-    push
-        
-    workflow_dispatch:
+on: push
 permissions:
   contents: read
   issues: write
