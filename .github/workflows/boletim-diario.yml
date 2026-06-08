@@ -1,9 +1,6 @@
 name: boletim-diario
 on: 
-    schedule:
-      - cron: '55 12 * * *'
-    pull_request:
-        types: [opened, synchronize, reopened]
+    push
         
     workflow_dispatch:
 permissions:
