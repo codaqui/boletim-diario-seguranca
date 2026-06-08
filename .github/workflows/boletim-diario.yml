@@ -7,9 +7,7 @@ permissions:
 jobs:
 
   boletim-diario:
-    runs-on: 
-      group: codaqui-runners
-      labels: [self-hosted, linux]
+    runs-on: ubuntu-lastest
     steps:
       - uses: actions/checkout@v3
 
