@@ -1,5 +1,6 @@
 name: boletim-diario
-on: push
+on:
+    push
 permissions:
   contents: read
   issues: write
