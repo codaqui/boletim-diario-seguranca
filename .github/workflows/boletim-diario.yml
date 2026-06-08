@@ -14,6 +14,7 @@ jobs:
   boletim-diario:
     runs-on: 
       group: codaqui-runners
+      labels: [self-hosted, linux]
     steps:
       - uses: actions/checkout@v3
 
